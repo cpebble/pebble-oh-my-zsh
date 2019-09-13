@@ -11,10 +11,14 @@ local return_status="%(?:%{$fg[blue]%}:%{$fg[red]%})$promptstring"
 local path_string="%{$fg[white]%}%4(c:.../:)%3~"
 
 # Do some git
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[green]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$fg[green]%} %{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[yellow]%}* %{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_CLEAN=""
+#ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[cyan]%}"
+#ZSH_THEME_GIT_PROMPT_PREFIX=""
+#ZSH_THEME_GIT_PROMPT_SUFFIX="%{$fg[cyan]%} %{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX=""
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}:("
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}:)"
+
+local gitprompt='$(git_prompt_info)'
 
 # oh-my-zsh $(git_prompt_info) puts 'dirty' behind branch
 git_custom_prompt() {
@@ -28,5 +32,5 @@ git_custom_prompt() {
 
 PROMPT="${host}%{$reset_color%} %b ${path_string} 
 ${return_status} "
-RPROMPT="$(git_custom_prompt)"
+RPROMPT="${gitprompt}"
 
